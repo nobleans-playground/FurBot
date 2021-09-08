@@ -21,7 +21,11 @@ find_package(urdf REQUIRED)
 ################################################################################
 # Install
 ################################################################################
-install(DIRECTORY launch rviz urdf
+install(
+  DIRECTORY 
+    launch 
+    rviz 
+    urdf
   DESTINATION share/${PROJECT_NAME}
 )
 
