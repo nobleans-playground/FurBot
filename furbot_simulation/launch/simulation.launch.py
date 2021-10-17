@@ -11,14 +11,14 @@ from webots_ros2_driver.webots_launcher import WebotsLauncher
 
 
 def generate_launch_description():
-    package_dir = get_package_share_directory('furbot_simulation')
+    simulation_dir = get_package_share_directory('furbot_simulation')
     world = LaunchConfiguration('world')
-    robot_description = pathlib.Path(os.path.join(package_dir, 'resource', 'furbot_webots.urdf')).read_text()
-    ros2_control_params = os.path.join(package_dir, 'resource', 'ros2control.yml')
+    webots_description = pathlib.Path(os.path.join(simulation_dir, 'resource', 'furbot_webots.urdf')).read_text()
+    ros2_control_params = os.path.join(simulation_dir, 'resource', 'ros2control.yml')
     use_sim_time = LaunchConfiguration('use_sim_time', default=True)
 
     webots = WebotsLauncher(
-        world=PathJoinSubstitution([package_dir, 'worlds', world])
+        world=PathJoinSubstitution([simulation_dir, 'worlds', world])
     )
 
     controller_manager_timeout = ['--controller-manager-timeout', '50'] if os.name == 'nt' else []
@@ -45,7 +45,7 @@ def generate_launch_description():
         executable='driver',
         output='screen',
         parameters=[
-            {'robot_description': robot_description,
+            {'robot_description': webots_description,
              'use_sim_time': use_sim_time},
             ros2_control_params
         ],
