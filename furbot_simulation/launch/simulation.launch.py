@@ -26,7 +26,7 @@ def generate_launch_description():
 
     diffdrive_controller_spawner = Node(
         package='controller_manager',
-        executable='spawner.py',
+        executable='spawner',
         output='screen',
         prefix=controller_manager_prefix,
         arguments=['diffdrive_controller'] + controller_manager_timeout,
@@ -34,7 +34,7 @@ def generate_launch_description():
 
     joint_state_broadcaster_spawner = Node(
         package='controller_manager',
-        executable='spawner.py',
+        executable='spawner',
         output='screen',
         prefix=controller_manager_prefix,
         arguments=['joint_state_broadcaster'] + controller_manager_timeout,
@@ -63,13 +63,6 @@ def generate_launch_description():
         }],
     )
 
-    footprint_publisher = Node(
-        package='tf2_ros',
-        executable='static_transform_publisher',
-        output='screen',
-        arguments=['0', '0', '0', '0', '0', '0', 'base_link', 'base_footprint'],
-    )
-
     return LaunchDescription([
         DeclareLaunchArgument(
             'world',
@@ -81,7 +74,6 @@ def generate_launch_description():
         webots,
         robot_state_publisher,
         furbot_driver,
-        footprint_publisher,
         launch.actions.RegisterEventHandler(
             event_handler=launch.event_handlers.OnProcessExit(
                 target_action=webots,

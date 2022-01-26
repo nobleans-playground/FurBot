@@ -10,7 +10,7 @@ def generate_launch_description():
     urdf = os.path.join(get_package_share_directory('furbot_description'),
                         'urdf', 'furbot.urdf')
 
-    # Hack to solve rviz not rendering cylinders 
+    # Hack to solve rviz not rendering cylinders
     # (https://answers.ros.org/question/374069/rviz2-only-render-boxes/)
     os.environ["LC_NUMERIC"] = "en_US.UTF-8"
 
