@@ -2,6 +2,17 @@
 <robot name="Furbot">
     <webots>
         <plugin type="webots_ros2_control::Ros2Control" />
+
+        <plugin type="webots_ros2_driver::Ros2IMU">
+            <enabled>true</enabled>
+            <updateRate>20</updateRate>
+            <topicName>/imu</topicName>
+            <alwaysOn>false</alwaysOn>
+            <frameName>imu_link</frameName>
+            <inertialUnitName>imu_inertial</inertialUnitName>
+            <gyroName>gyro</gyroName>
+            <accelerometerName>accelerometer</accelerometerName>
+        </plugin>
     </webots>
 
     <ros2_control name="WebotsControl" type="system">

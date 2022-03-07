@@ -27,6 +27,15 @@ PROTO furbot [
     synchronization IS synchronization
     selfCollision IS selfCollision
     children [
+          Accelerometer {
+            translation 0.0 0.0 0.125
+          }
+          Gyro {
+            translation 0.0 0.0 0.125
+          }
+          Compass {
+            translation 0.0 0.0 0.125
+          }
           HingeJoint {
             jointParameters HingeJointParameters {
               axis 0.000000 1.000000 0.000000
@@ -148,6 +157,9 @@ PROTO furbot [
                 geometry DEF BODY Box {
                    size 0.2 0.4 0.7
                 }
+              }
+              InertialUnit {
+                name "imu_inertial"
               }
             ]
           }
